@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<style>
+    body{
+        background-color: #C7E2E9;
+    }
+    h1 {
+        text-align: right;
+        padding: 0px 10px 10px 10px;
+    }
+    h2 {
+        font-size: 1.8em;
+        padding: 0px 100px 100px 50px;
+    }
+    input[type=submit] {
+        font-size: 0.5em;
+        color: #009;
+        margin-bottom: 0em;
+        border: none;
+        text-decoration: underline;
+        background-color: #C7E2E9;
+    }
+    input[type=search] {
+        color: #000;
+        margin-bottom: 0em;
+        width: 800px;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<form action="login.html" method="post">
+    <h1><input type="submit" value="Sign Out"></h1>
+</form>
+<form action="found_book.html" method="post">
+    <h1 style="text-align: left; font-size:1.5em">
+        Search: <input name="search_text" type="search" placeholder="Search for ISBN number, title, or author of book">
+        <input style="font-size:1em; text-decoration: none; color: #000; border: 1px solid; background-color: #c1c0c2" type="submit" value="Go">
+    </h1>
+</form>
+<h2>
+    <ol>
+        {% for book in books %}
+        <li>
+            ISBN number: {{ book.isbn }}<br>
+            Title: {{ book.title }}<br>
+            Author: {{ book.author }}<br>
+            Year: {{ book.year }}<br>
+            <form action="book_page.html" method="get">
+                <h1 style="text-align: left; font-size:1em">
+                    <input id="current_isbn" name="current_isbn" value="{{ book.isbn }}" type="hidden">
+                    <input id="current_title" name="current_title" value="{{ book.title }}" type="hidden">
+                    <input id="current_author" name="current_author" value="{{ book.author }}" type="hidden">
+                    <input id="current_year" name="current_year" value="{{ book.year }}" type="hidden">
+                    <input id="current_id" name="current_id" value="{{ book.id }}" type="hidden">
+                    <input style="font-size:0.8em; text-decoration: underline; padding: 0px 0px 0px 0px;" id="book" type="submit" value="Write a review->">
+                </h1>
+            </form><br>
+            <br>
+        </li>
+        {% endfor %}
+    </ol>
+
+</h2>
+</body>
+</html>
